@@ -3,11 +3,11 @@ class SortingRobot:
         """
         SortingRobot takes a list and sorts it.
         """
-        self._list = l          # The list the robot is tasked with sorting
-        self._item = None       # The item the robot is holding
-        self._position = 0      # The list position the robot is at
-        self._light = "OFF"     # The state of the robot's light
-        self._time = 0          # A time counter (stretch)
+        self._list = l  # The list the robot is tasked with sorting
+        self._item = None  # The item the robot is holding
+        self._position = 0  # The list position the robot is at
+        self._light = "OFF"  # The state of the robot's light
+        self._time = 0  # A time counter (stretch)
 
     def can_move_right(self):
         """
@@ -81,11 +81,13 @@ class SortingRobot:
         Turn on the robot's light
         """
         self._light = "ON"
+
     def set_light_off(self):
         """
         Turn off the robot's light
         """
         self._light = "OFF"
+
     def light_is_on(self):
         """
         Returns True if the robot's light is on and False otherwise.
@@ -96,8 +98,59 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # while loop control logic
+        # light on robot is sorting
+        self.set_light_on()
+        # start while
+        while self.light_is_on():
+            # pick an item up for comparison
+            # default item is None or empty robot claw
+            self.swap_item()
+
+
+            # case 1 robot can move right 
+            # right is not none 
+            while self.can_move_right():
+                # move >
+                self.move_right()
+                
+                """
+                Compare the held item with the item in front of the robot:
+                If the held item's value is greater, return 1.
+                If the held item's value is less, return -1.
+                If the held item's value is equal, return 0.
+                If either item is None, return None.
+                """
+                # if item in front is lower than 
+                # item in claw 
+                # if compare value == 1 item in claw is greater
+                if self.compare_item() == 1:
+
+                    # pick up lower item 
+                    self.swap_item()
+
+            # while robot can move left 
+            # while robot does not find  None
+            while self.can_move_left() == True and self.compare_item() is not None:
+                # move left until it finds None
+                self.move_left()
+            # swap None with the current item in claw
+            self.swap_item()
+
+            # getting to the end of what pythontutor shows and still not finished
+            # think I can still move right also 
+            # if robot can still move right
+            if self.can_move_right() is True:
+                # move to the right
+                self.move_right()
+                
+            # otherwise the list is sorted
+            else:
+                # get outta the loop
+                self.set_light_off()
+
+
+    
 
 
 if __name__ == "__main__":
@@ -106,7 +159,10 @@ if __name__ == "__main__":
 
     l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
 
+    # l = [15, 41, 58, 49, 26, 4]
+
     robot = SortingRobot(l)
 
     robot.sort()
     print(robot._list)
+    print(robot._time)

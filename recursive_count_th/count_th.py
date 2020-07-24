@@ -17,6 +17,6 @@ def count_th(word):
         
         # replace the th with foundit so its 
         # not counted on the next pass of recursion 
-        word = word.replace(str, 'foundit', 1)
+        word = word.replace(str, 'found', 1)
         #increment the count of found words 
         return count_th(word) + 1 
