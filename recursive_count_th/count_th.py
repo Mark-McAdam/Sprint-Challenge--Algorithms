@@ -5,6 +5,18 @@ Your function must utilize recursion. It cannot contain any loops.
 '''
 def count_th(word):
     
-    # TBC
+    # string we are looking for
+    str = 'th'
     
-    pass
+    # base case - str not found return 0
+    if str not in word:
+        return 0
+    # recursive case 
+    # if found do something 
+    if str in word:
+        
+        # replace the th with foundit so its 
+        # not counted on the next pass of recursion 
+        word = word.replace(str, 'foundit', 1)
+        #increment the count of found words 
+        return count_th(word) + 1 
