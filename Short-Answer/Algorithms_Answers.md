@@ -2,13 +2,12 @@
 
 ## Exercise I
 
-a) O(n^3) This algorithm will run depending on the size of n. As n grows the runtime will increase exponentially
+a) n^3 / n^2 leaves runtime of n 
 
 
-b) O(n^2) Nested while will cause our equation to run n * n number of times 
+b) O (log n) because the range of the second while loop is halved each iteration 
 
-
-c) O(1) one or constant - just adds 2 for each bunny. One operation per call. 
+c) O(n) one or constant - just adds 2 for each bunny. One operation per call. 
 
 
 ## Exercise II
